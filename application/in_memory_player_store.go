@@ -8,6 +8,14 @@ func NewInMemoryPlayerStore() *InMemoryPlayerStore {
 	return &InMemoryPlayerStore{map[string]int{}}
 }
 
+func (i *InMemoryPlayerStore) GetLeague() []Player {
+	var league []Player
+	for name, wins := range i.store {
+		league = append(league, Player{name, wins})
+	}
+	return league
+}
+
 func (i *InMemoryPlayerStore) RecordWin(name string) {
 	i.store[name]++
 }
